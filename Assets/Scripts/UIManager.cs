@@ -103,6 +103,12 @@ public class UIManager : MonoBehaviour
     public Button GOADButton;
     public GameObject GOBackgroundPanel;
 
+    //Mute toggle
+    public int isMuted = 0;
+    public Sprite unmuted;
+    public Sprite muted;
+    public GameObject muteIcon;
+
     public void Start()
     {
         //Assign GameManager reference
@@ -115,6 +121,7 @@ public class UIManager : MonoBehaviour
 
         shopUpdate();
         loadSettings();
+        checkMuted();
     }
 
     //Called when hitting the play button
@@ -487,6 +494,8 @@ public class UIManager : MonoBehaviour
         musicValue.text = "" + MusicSlider.GetComponent<Slider>().value;
         PlayerPrefs.SetInt(GameScript.prefs[0], (int)MusicSlider.GetComponent<Slider>().value);
         PlayerPrefs.Save();
+
+        checkMuted();
     }
 
     //Save changes to SFX
@@ -495,6 +504,74 @@ public class UIManager : MonoBehaviour
         sfxValue.text = "" + SFXSlider.GetComponent<Slider>().value;
         PlayerPrefs.SetInt(GameScript.prefs[1], (int)SFXSlider.GetComponent<Slider>().value);
         PlayerPrefs.Save();
+
+        checkMuted();
+    }
+
+    public void checkMuted()
+    {
+        if (SFXSlider.GetComponent<Slider>().value == 0 && MusicSlider.GetComponent<Slider>().value == 0)
+        {
+            isMuted = 1;
+            muteIcon.GetComponent<Image>().sprite = muted;
+            PlayerPrefs.SetInt(GameScript.prefs[4], 1);
+            PlayerPrefs.Save();
+        }else
+        {
+            isMuted = 0;
+            muteIcon.GetComponent<Image>().sprite = unmuted;
+            PlayerPrefs.SetInt(GameScript.prefs[4], 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    //Save changes to SFX
+    public void muteToggle()
+    {
+        isMuted = PlayerPrefs.GetInt(GameScript.prefs[4]);
+
+        if (isMuted == 0)
+        {
+            //Save previous values
+            PlayerPrefs.SetInt(GameScript.prefs[2], PlayerPrefs.GetInt(GameScript.prefs[0]));
+            PlayerPrefs.SetInt(GameScript.prefs[3], PlayerPrefs.GetInt(GameScript.prefs[1]));
+
+            //Set values and sliders to 0
+            musicValue.text = "0";
+            MusicSlider.GetComponent<Slider>().value = 0;
+            PlayerPrefs.SetInt(GameScript.prefs[0], 0);
+
+            sfxValue.text = "0";
+            SFXSlider.GetComponent<Slider>().value = 0;
+            PlayerPrefs.SetInt(GameScript.prefs[1], 0);
+
+            //Change button icon
+            muteIcon.GetComponent<Image>().sprite = muted;
+
+            isMuted = 1;
+            PlayerPrefs.SetInt(GameScript.prefs[4], 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            int pbgm = PlayerPrefs.GetInt(GameScript.prefs[2]);
+            int psfx = PlayerPrefs.GetInt(GameScript.prefs[3]);
+            //Retrieve previous values and set values and sliders to previous values
+            //Set values and sliders to 0
+            musicValue.text = "" + pbgm;
+            MusicSlider.GetComponent<Slider>().value = pbgm;
+            PlayerPrefs.SetInt(GameScript.prefs[0], pbgm);
+
+            sfxValue.text = "" + psfx;
+            SFXSlider.GetComponent<Slider>().value = psfx;
+            PlayerPrefs.SetInt(GameScript.prefs[1], psfx);
+            PlayerPrefs.Save();
+
+            //Change button icon
+            muteIcon.GetComponent<Image>().sprite = unmuted;
+
+            isMuted = 0;
+        }
     }
 
     //Tweens the "Skipped" text for added effect

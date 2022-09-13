@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Analytics;
 using UnityEngine.SocialPlatforms;
-using GooglePlayGames.BasicApi;
-using GooglePlayGames;
 
 public class GameManager : MonoBehaviour
 {
@@ -82,15 +80,6 @@ public class GameManager : MonoBehaviour
     //GameOver AD Manager Variables
     private int ADChance;
 
-    //Bool to check if connected to google play services
-    public bool isConnectedToGooglePlayServices;
-
-    private void Awake()
-    {
-        PlayGamesPlatform.DebugLogEnabled = true;
-        PlayGamesPlatform.Activate();
-    }
-
     void Start()
     {
         //Set starting state
@@ -112,9 +101,6 @@ public class GameManager : MonoBehaviour
 
         //Setup Prefs
         prefsSetup();
-
-        //Sign in to Play Games Services
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
 
     void Update()
@@ -235,30 +221,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(GetComponent<ADManager>().ShowBannerWhenInitialized());
                 //gameOver(); //causes infinte loop of increasing games played amount
                 break;
-        }
-    }
-
-    public void GooglePlayLogIn()
-    {
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-    }
-
-    internal void ProcessAuthentication(SignInStatus status)
-    {
-        if (status == SignInStatus.Success)
-        {
-            // Continue with Play Games Services
-            isConnectedToGooglePlayServices = true;
-            Debug.Log("Logged in");
-        }
-        else
-        {
-            // Disable your integration with Play Games Services or show a login button
-            // to ask users to sign-in. Clicking it should call
-            // PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication).
-            isConnectedToGooglePlayServices = false;
-            Debug.Log("Log in failed due to ");
-            Debug.Log(status);
         }
     }
 
