@@ -754,7 +754,14 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -768,7 +775,7 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: bd74e278-7b95-4a1e-ae76-a08402aa2fab
+  cloudProjectId: bc92839f-5f7b-4382-b8e4-e3e75e6371fa
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Ice Br-br-breaker

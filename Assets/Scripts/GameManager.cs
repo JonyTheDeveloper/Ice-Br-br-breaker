@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     //Reference to SaveManager
     SaveManager SaveScript;
 
+    //Reference to AdManager GameObject
+    public GameObject adManager;
+
+    [SerializeField] RewardedAdsButton rewardedAdsButton;
+
     //Game stat manager
     public enum State
     {
@@ -109,7 +114,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case State.Menu:
-                GetComponent<ADManager>().HideBanner();
+                adManager.GetComponent<BannerAd>().HideBannerAd();
 
                 Time.timeScale = 1;
 
@@ -123,7 +128,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case State.Game:
-                GetComponent<ADManager>().HideBanner();
+                adManager.GetComponent<BannerAd>().HideBannerAd();
 
                 Time.timeScale = 1;
                 timer += Time.deltaTime;
@@ -218,7 +223,7 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GameOver:
                 gameStarted = false;
-                StartCoroutine(GetComponent<ADManager>().ShowBannerWhenInitialized());
+                //StartCoroutine(GetComponent<ADManager>().ShowBannerWhenInitialized());
                 //gameOver(); //causes infinte loop of increasing games played amount
                 break;
         }
@@ -631,6 +636,9 @@ public class GameManager : MonoBehaviour
     //Game Over
     public void gameOver()
     {
+        //Load and show banner ad
+        adManager.GetComponent<BannerAd>().LoadBanner();
+
         //Set 2x shards ad chance
         ADChance = 50; //option will show 50% of the time
 
@@ -659,6 +667,9 @@ public class GameManager : MonoBehaviour
         {
             //Show pannel
             UIScript.GOADPanel.SetActive(true);
+
+            rewardedAdsButton.LoadAd();
+
             UIScript.GOBackgroundPanel.GetComponent<Image>().sprite = UIScript.bottomPanel;
         }
 
@@ -709,7 +720,7 @@ public class GameManager : MonoBehaviour
     public void cardPull()
     {
         //Check if player owns enough shards
-        if (SaveData.Shards >= 25 && SaveData.CardsOwnedHP>31 && SaveData.CardsOwnedSpd > 31 && SaveData.CardsOwnedGreen > 31 && SaveData.CardsOwnedLifesteal > 31 && SaveData.CardsOwnedSkip > 31 && SaveData.CardsOwnedFrozenChance > 31 && SaveData.CardsOwnedFrozenAmount > 31)
+        if (SaveData.Shards >= 25 && SaveData.CardsOwnedHP < 31 && SaveData.CardsOwnedSpd < 31 && SaveData.CardsOwnedGreen < 31 && SaveData.CardsOwnedLifesteal < 31 && SaveData.CardsOwnedSkip < 31 && SaveData.CardsOwnedFrozenChance < 31 && SaveData.CardsOwnedFrozenAmount < 31)
         {
             //Reduce and save shards
             SaveData.Shards -= 25;
@@ -980,7 +991,5 @@ public class GameManager : MonoBehaviour
         //save the shards again, effectively doubling them
         SaveData.Shards += (int)currentShardsGained;
         SaveScript.SaveData();
-
-
     }
 }

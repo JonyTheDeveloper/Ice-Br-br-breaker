@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
     {
         json = JsonUtility.ToJson(Game.SaveData, true);
         File.WriteAllText(Application.persistentDataPath + "/CardData.json", json);
-        Debug.Log("Saved");
+        //Debug.Log("Saved");
     }
 
     //Load data from JSON file

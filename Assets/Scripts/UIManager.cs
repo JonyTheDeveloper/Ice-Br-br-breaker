@@ -80,6 +80,11 @@ public class UIManager : MonoBehaviour
     public Image popupCardImage;
     public Sprite questionSprite;
 
+    public GameObject[] puCardLevel;
+    public GameObject[] puCardStrength;
+    public Color puNormal;
+    public Color puCurrent;
+
     //Array of cards owned
     public int[] cardsOwned;
 
@@ -458,6 +463,48 @@ public class UIManager : MonoBehaviour
         {
             uicardstrength[i].text = cardStrength[i];
         }
+
+        //Check and change UI to highlight current level gains
+        for (int i = 0; i < puCardLevel.Length; i++)
+        {
+            puCardLevel[i].GetComponent<Text>().color = puNormal;
+            puCardStrength[i].GetComponent<Text>().color = puNormal;
+        }
+
+        switch (cardLvl)
+        {
+            case 1:
+                {
+                    puCardLevel[0].GetComponent<Text>().color = puCurrent;
+                    puCardStrength[0].GetComponent<Text>().color = puCurrent;
+                    break;
+                }
+            case 2:
+                {
+                    puCardLevel[1].GetComponent<Text>().color = puCurrent;
+                    puCardStrength[1].GetComponent<Text>().color = puCurrent;
+                    break;
+                }
+            case 3:
+                {
+                    puCardLevel[2].GetComponent<Text>().color = puCurrent;
+                    puCardStrength[2].GetComponent<Text>().color = puCurrent;
+                    break;
+                }
+            case 4:
+                {
+                    puCardLevel[3].GetComponent<Text>().color = puCurrent;
+                    puCardStrength[3].GetComponent<Text>().color = puCurrent;
+                    break;
+                }
+            case 5:
+                {
+                    puCardLevel[4].GetComponent<Text>().color = puCurrent;
+                    puCardStrength[4].GetComponent<Text>().color = puCurrent;
+                    break;
+                }
+        }
+
     }
 
     //Hide card info pop up
