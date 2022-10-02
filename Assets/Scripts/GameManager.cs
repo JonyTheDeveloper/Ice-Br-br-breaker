@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
         {
             //Green Hit
             iceBreak();
+            FindObjectOfType<AudioManager>().iceBreakSFX();
 
             if (Random.Range(0,100) < skipChance)
             {
@@ -984,6 +985,7 @@ public class GameManager : MonoBehaviour
     public void iceBreak()
     {
         Instantiate(shatter[Random.Range(0, shatter.Length)]);
+
     }
 
     public void doubleShards()

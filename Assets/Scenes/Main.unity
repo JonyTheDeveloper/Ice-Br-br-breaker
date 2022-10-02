@@ -1317,6 +1317,129 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78247189}
   m_CullTransparentMesh: 0
+--- !u!1 &83215216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 83215217}
+  - component: {fileID: 83215218}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &83215217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83215216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 498.56036, y: 929.07, z: 0.8959937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83215218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83215216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084c3a25e39d7514d9bfdeca3fe899af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: bgm
+    clip: {fileID: 8300000, guid: a32ee088beed08f4683b9e24cd28f7a3, type: 3}
+    volume: 0.037
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: snow1
+    clip: {fileID: 8300000, guid: 53b0455632312d644b28810a46692cb0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: snow2
+    clip: {fileID: 8300000, guid: 0e31447ddf1184646a53f6cefa681c63, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: snow3
+    clip: {fileID: 8300000, guid: 091b4dfab55051f4abde984a50d5d8b4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: snow4
+    clip: {fileID: 8300000, guid: 2f25f070a7b992d43a23efcae4583a33, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: snow5
+    clip: {fileID: 8300000, guid: 546c760cc888ab749860be8582569ad3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: impact1
+    clip: {fileID: 8300000, guid: 800be5ca449eeff438759701b5f546ce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: impact2
+    clip: {fileID: 8300000, guid: 348123aa08baad74f932b474a7a1f76a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: impact3
+    clip: {fileID: 8300000, guid: 4cc8bee9d12ecbf4cb637e2e305c9a1f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: impact4
+    clip: {fileID: 8300000, guid: d9bb9f3f14a16e44a886955af2edf25a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: impact5
+    clip: {fileID: 8300000, guid: 7cf93f5347e742444a16b1bc5a102523, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  snow:
+  - snow1
+  - snow2
+  - snow3
+  - snow4
+  - snow5
+  mining:
+  - impact1
+  - impact2
+  - impact3
+  - impact4
+  - impact5
 --- !u!1 &104538369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,9 +5080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23083238aa27c349ba840ccd7a16dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadBannerButton: {fileID: 0}
-  _showBannerButton: {fileID: 0}
-  _hideBannerButton: {fileID: 0}
   _bannerPosition: 4
   _androidAdUnitId: Banner_Android
   _iOSAdUnitId: Banner_iOS
@@ -10274,7 +10394,6 @@ GameObject:
   - component: {fileID: 1148102592}
   - component: {fileID: 1148102593}
   - component: {fileID: 1148102596}
-  - component: {fileID: 1148102597}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10703,18 +10822,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d27882765e0234478d289f3f54404f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1148102597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148102587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4aa9e1bca0644f409c9781c71b1b41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1168136565
