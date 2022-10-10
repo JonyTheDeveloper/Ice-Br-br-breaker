@@ -12,5 +12,7 @@ If you find any security vulnerability that has been inadvertently caused by me,
 
 # Contact us
 JonyTheDeveloper
+
 Twitter: @JonyTDeveloper
+
 Email: JonyTheDeveloper@gmail.com
