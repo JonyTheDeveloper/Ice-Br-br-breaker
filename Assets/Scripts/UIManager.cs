@@ -1,5 +1,4 @@
-﻿using GooglePlayGames;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -542,6 +541,8 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt(GameScript.prefs[0], (int)MusicSlider.GetComponent<Slider>().value);
         PlayerPrefs.Save();
 
+        FindObjectOfType<AudioManager>().bgmVolumeChange();
+
         checkMuted();
     }
 
@@ -551,6 +552,8 @@ public class UIManager : MonoBehaviour
         sfxValue.text = "" + SFXSlider.GetComponent<Slider>().value;
         PlayerPrefs.SetInt(GameScript.prefs[1], (int)SFXSlider.GetComponent<Slider>().value);
         PlayerPrefs.Save();
+
+        FindObjectOfType<AudioManager>().sfxVolumeChange();
 
         checkMuted();
     }
@@ -649,17 +652,5 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(60);
         GameScript.state = GameManager.State.Game;
-    }
-
-    //Open leaderboards
-    public void viewLeaderboard()
-    {
-        PlayGamesPlatform.Instance.ShowLeaderboardUI("CgkImNymn4cbEAIQFA");
-    }
-
-    //Open acievements list
-    public void viewAchievements()
-    {
-        Social.ShowAchievementsUI();
     }
 }

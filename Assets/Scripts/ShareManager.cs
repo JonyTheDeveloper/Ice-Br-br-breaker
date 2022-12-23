@@ -29,7 +29,7 @@ public class ShareManager : MonoBehaviour
 		Destroy(ss);
 
 		new NativeShare().AddFile(filePath)
-			.SetSubject("Ice Br-br-breaker").SetText(shareMessage).SetUrl("Add Shop URL later")
+			.SetSubject("Ice Br-br-breaker").SetText(shareMessage).SetUrl("https://play.google.com/store/apps/details?id=com.JonyTheDeveloper.IceBrbrbreaker")
 			.SetCallback((result, shareTarget) => Debug.Log("Share result: " + result + ", selected app: " + shareTarget))
 			.Share();
 	}
